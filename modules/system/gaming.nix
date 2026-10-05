@@ -1,5 +1,5 @@
 # Steam and the parts of cachyos-gaming-meta that need system support.
-# Launchers without system needs (Lutris, Prism) are in users/davidutz/apps.nix.
+# Launchers without system needs (Lutris, Prism) are in users/davidutz/apps/games/.
 {
   flake.nixosModules.gaming = { pkgs, ... }: {
     programs.steam = {

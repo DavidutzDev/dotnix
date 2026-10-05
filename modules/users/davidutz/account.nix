@@ -1,8 +1,9 @@
 # Everything in modules/users/davidutz/ adds to one of these modules:
 #   nixosModules.davidutz          the account, plus system bits the user needs (login shell)
-#   homeModules.davidutz           terminal setup, used everywhere including the pi
-#   homeModules.davidutzDesktop    Hyprland and GUI apps, for machines with a screen
-#   homeModules.davidutzAgents     coding agents, for machines that run them
+#   homeModules.davidutz           terminal setup, used everywhere      shell/  cli/
+#   homeModules.davidutzDesktop    Hyprland and GUI apps                desktop/  apps/
+#   homeModules.davidutzAgents     coding agents                        agents/
+#   homeConfigurations.davidutz*   the same modules without NixOS       standalone.nix
 # Each file sets whichever it needs; the module system merges them.
 #
 # The NixOS account only brings the terminal setup. Each host adds the other profiles:
@@ -24,12 +25,17 @@
       group = "davidutz";
       description = "David Gheghea";
       # Join a service's group only on hosts that enable the service.
-      extraGroups =
-        [ "users" "networkmanager" "wheel" "video" "audio" "input" ]
-        ++ lib.optional config.virtualisation.docker.enable "docker"
-        ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd"
-        ++ lib.optional config.programs.gamemode.enable "gamemode"
-        ++ lib.optional config.services.seatd.enable "seat";
+      extraGroups = [
+        "users"
+        "networkmanager"
+        "wheel"
+        "video"
+        "audio"
+        "input"
+      ]
+      ++ lib.optional config.virtualisation.docker.enable "docker"
+      ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd"
+      ++ lib.optional config.programs.gamemode.enable "gamemode";
       # The password is set per host (hashedPasswordFile), see hosts/*/configuration.nix.
     };
 
@@ -46,6 +52,4 @@
 
     programs.home-manager.enable = true;
   };
-
-  flake.homeModules.davidutzDesktop.imports = [ self.homeModules.davidutz ];
 }

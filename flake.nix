@@ -27,10 +27,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Plain files (Hyprland Lua, tmux, ghostty) shared with the CachyOS install.
-    # Run `nix flake update dotfiles` after pushing changes there.
-    dotfiles = {
-      url = "github:DavidutzDev/dotfiles";
+    # The desktop shell: bar, launcher, notifications, OSD and power menu.
+    mochi = {
+      url = "github:DavidutzDev/mochi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Agent skills and instructions, linked in by the agents profile.
+    dotagents = {
+      url = "github:DavidutzDev/dotagents";
       flake = false;
     };
   };

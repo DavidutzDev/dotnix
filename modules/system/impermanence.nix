@@ -122,6 +122,18 @@
             inInitrd = true;
             configureParent = true;
           }
+          # Host key for systemd-creds (LoadCredentialEncrypted=). Without it, credentials
+          # encrypted before a reboot can't be read, e.g. libvirt's secrets-encryption-key.
+          # Bind-mounted (systemd won't follow a symlink here), and only once the file
+          # exists under /persist: `sudo systemd-creds setup` and copy it there.
+          # Preservation re-applies the mode on every boot, and systemd refuses the key
+          # ("Failed to determine local credential key") unless it is 0400.
+          {
+            file = "/var/lib/systemd/credential.secret";
+            mode = "0400";
+            inInitrd = true;
+            configureParent = true;
+          }
         ];
 
         directories = [

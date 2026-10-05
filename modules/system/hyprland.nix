@@ -1,6 +1,6 @@
 # Machine side of the Hyprland desktop: compositor, session, lock screen PAM,
 # portals, keyring, fonts. Import it on hosts that have a screen.
-# The user's Hyprland config is in modules/users/davidutz/hyprland.nix.
+# The user's Hyprland config is in modules/users/davidutz/desktop/hyprland/.
 {
   flake.nixosModules.hyprland = { pkgs, ... }: {
     programs.hyprland = {
@@ -9,9 +9,6 @@
       xwayland.enable = true;
     };
     programs.hyprlock.enable = true; # also installs the PAM service hyprlock needs
-    # Odyssey's idlectl.sh adds a drop-in to this unit that points ExecStart at
-    # `odyssey hypridle`, so the NixOS-provided unit is the one it customises.
-    services.hypridle.enable = true;
 
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     services.gnome.gnome-keyring.enable = true;

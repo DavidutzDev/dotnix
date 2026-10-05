@@ -1,5 +1,0 @@
-max_items = 200
-# history lives in ~/.local/share/elephant/clipboard.gob (plaintext, survives reboot).
-# cliphist used to be wiped at every login; this is the equivalent guard.
-auto_cleanup = 240 # drop entries older than 4h
-pinned_on_top = true
