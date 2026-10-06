@@ -52,6 +52,12 @@ stdenv.mkDerivation (
     };
 
     postPatch = ''
+      # Bake the public T3 Connect identifiers (Clerk instance and relay) that
+      # official release builds ship with. Vite inlines them at build time, and
+      # without them `hasCloudPublicConfig()` is false, which hides every
+      # app.t3.codes sign-in entry point. Not secrets; see upstream .env.example.
+      cp .env.example .env
+
       substituteInPlace apps/web/vite.config.ts \
         --replace-fail 'const host = explicitHost || "localhost";' \
                        'const host = explicitHost || "127.0.0.1";'

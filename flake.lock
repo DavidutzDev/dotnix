@@ -119,11 +119,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1791208427,
-        "narHash": "sha256-YEi07qu96uNyubT9i1sjrtN2rftp8KubcwG4iaNfS8U=",
+        "lastModified": 1791314347,
+        "narHash": "sha256-qW5ukYudo5fo8rJwoA4ZzkGrBYXXvVA7PhxKvUEXAOU=",
         "owner": "DavidutzDev",
         "repo": "mochi",
-        "rev": "fd40577ded286dc1e1cdd072b56eaf9986b3debe",
+        "rev": "0b3e6b5b0d5e682fade2be49f192edc66dedf47d",
         "type": "github"
       },
       "original": {
